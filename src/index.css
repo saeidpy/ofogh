@@ -1,13 +1,45 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  width: 100vw;
+  height: 100vh;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+@font-face {
+  font-family: "Vazir-Bold";
+  src: url("Assets/font/Vazir-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Vazir";
+  src: url("Assets/font/Vazir.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Vazir-Light";
+  src: url("Assets/font/Vazir-Light.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Vazir-Medium";
+  src: url("Assets/font/Vazir-Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Vazir-Thin";
+  src: url("Assets/font/Vazir-Thin.ttf") format("truetype");
 }

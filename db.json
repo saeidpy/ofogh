@@ -1,0 +1,16 @@
+{
+  "ads": [
+    {
+      "id": 1,
+      "author": "typicode"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "saeid",
+      "userName": "admin",
+      "password": "123456"
+    }
+  ]
+}

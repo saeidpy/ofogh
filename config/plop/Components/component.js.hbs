@@ -1,0 +1,18 @@
+import React from "react";
+{{#if item}}
+import {useStyle} from "./{{item}}.style.js";
+{{else}}
+import {useStyle} from "./{{name}}.style.js";
+{{/if}}
+import PropTypes from "prop-types";
+
+
+export default function {{#if item}}{{item}}{{else}}{{name}}{{/if}}Component(props) {
+const classes = useStyle()
+const {state, setState}=props
+return (
+<div>
+
+</div>
+)
+}

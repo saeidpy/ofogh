@@ -1,24 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
-
+import Routes from "./Routes";
+import { BrowserRouter as Router } from "react-router-dom";
+import { jssPreset, StylesProvider } from "@material-ui/styles";
+import { create } from "jss";
+import { MuiThemeProvider } from "@material-ui/core";
+import { theme } from "./theme/theme";
+import { SnackbarProvider } from "notistack";
+import rtl from "jss-rtl";
+import { QueryClient, QueryClientProvider } from "react-query";
+const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
+const queryClient = new QueryClient();
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <StylesProvider jss={jss}>
+        <MuiThemeProvider theme={theme}>
+          <SnackbarProvider
+            autoHideDuration={2500}
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "center",
+            }}
+            maxSnack={2}
+          >
+            <Router>
+              <Routes />
+            </Router>
+          </SnackbarProvider>
+        </MuiThemeProvider>
+      </StylesProvider>
+    </QueryClientProvider>
   );
 }
 

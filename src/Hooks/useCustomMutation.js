@@ -6,7 +6,7 @@ export function useCustomMutation(apiCall, callbackSuccess) {
   const mutation = useMutation(apiCall, {
     onSuccess: callbackSuccess,
     onError: (error) => {
-      enqueueSnackbar(error.message, { variant: "error" });
+      enqueueSnackbar(error?.response?.data, { variant: "error" });
     },
   });
 

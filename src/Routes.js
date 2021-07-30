@@ -1,21 +1,20 @@
-import { useEffect, useState } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import EntryComponent from "./Components/Entry/EntryComponent";
-import LoginComponent from "./Components/Login/LoginComponent";
-import SignUpComponent from "./Components/SignUp/SignUpComponent";
-import { USER_AUTH } from "./Consistent/consistent";
-import route from "./Consistent/route";
-import { getLocalStorage } from "./Utils/utils";
+import { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+import EntryComponent from './Components/Entry/EntryComponent';
+import LoginComponent from './Components/Login/LoginComponent';
+import SignUpComponent from './Components/SignUp/SignUpComponent';
+import route from './Consistent/route';
 
 function Routes() {
-  const [userExist, setUserExist] = useState();
+  const [userExist, setUserExist] = useState({});
   useEffect(() => {
-    const getUser = () => {
-      setUserExist(getLocalStorage(USER_AUTH));
+    const getUser = (data) => {
+      setUserExist(data.value);
     };
-    window.addEventListener("storage", getUser);
+    document.addEventListener("authInserted", getUser);
     return () => {
-      window.removeEventListener("storage", getUser);
+      document.removeEventListener("authInserted", getUser);
     };
   }, []);
   return (

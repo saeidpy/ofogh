@@ -10,11 +10,11 @@ const theme = createMuiTheme({
   direction: "rtl",
   typography: {
     fontFamily: [
-      "Vazir-Bold",
-      "Vazir",
-      "Vazir-Light",
-      "Vazir-Medium",
-      "Vazir-Thin",
+      "YEKAN-Bold-Num",
+      "YEKAN-Num",
+      "YEKAN-Light-Num",
+      "YEKAN-Medium-Num",
+      "YEKAN-Thin-Num",
     ].join(","),
   },
   props: {

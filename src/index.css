@@ -5,13 +5,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  width: 100vw;
-  height: 100vh;
-}
-
-#root {
-  width: 100vw;
-  height: 100vh;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  direction: rtl;
 }
 
 code {
@@ -19,27 +16,32 @@ code {
     monospace;
 }
 
-@font-face {
-  font-family: "Vazir-Bold";
-  src: url("Assets/font/Vazir-Bold.ttf") format("truetype");
+#root {
+  height: 100%;
+  overflow: hidden;
 }
 
 @font-face {
-  font-family: "Vazir";
-  src: url("Assets/font/Vazir.ttf") format("truetype");
+  font-family: "YEKAN-Bold-Num";
+  src: url("Assets/font/IRANYekanBoldFaNum.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: "Vazir-Light";
-  src: url("Assets/font/Vazir-Light.ttf") format("truetype");
+  font-family: "YEKAN-Num";
+  src: url("Assets/font/IRANYekanRegularFaNum.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: "Vazir-Medium";
-  src: url("Assets/font/Vazir-Medium.ttf") format("truetype");
+  font-family: "YEKAN-Light-Num";
+  src: url("Assets/font/IRANYekanLightFaNum.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: "Vazir-Thin";
-  src: url("Assets/font/Vazir-Thin.ttf") format("truetype");
+  font-family: "YEKAN-Medium-Num";
+  src: url("Assets/font/IRANYekanMediumFaNum.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "YEKAN-Thin-Num";
+  src: url("Assets/font/IRANYekanThinFaNum.ttf") format("truetype");
 }

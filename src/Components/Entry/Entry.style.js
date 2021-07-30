@@ -2,8 +2,9 @@ import { makeStyles } from "@material-ui/core";
 
 const useStyle = makeStyles((theme) => ({
   root: {
-    width: "100%",
-    height: "100%",
+    minWidth: "100vw",
+    minHeight: "100vh",
+    overflowY: "auto",
   },
   item: {
     width: "80%",

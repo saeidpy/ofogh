@@ -1,10 +1,16 @@
-const login = async () => {
-  const { data } = await fetch(process.env.server_url);
+import apiMiddleware from "./apiMiddleware";
+
+const loginApi = async (body) => {
+  const { data } = await apiMiddleware({ method: "post", url: "/login", body });
   return data;
 };
-const register = async () => {
-  const { data } = await fetch(process.env.server_url);
+const signupApi = async (body) => {
+  const { data } = await apiMiddleware({
+    method: "post",
+    url: "/signup",
+    body,
+  });
   return data;
 };
 
-export { login, register };
+export { loginApi, signupApi };

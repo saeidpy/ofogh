@@ -1,12 +1,10 @@
-import { Grid } from "@material-ui/core";
-import React from "react";
-import fa from "../../Consistent/fa.js";
-import { withIsWeb } from "../../Hoc/withIsWeb.js";
-import AdCardComponent from "../AdCard/AdCardComponent.js";
-import CustomButtonComponent from "../CustomButton/CustomButtonComponent.js";
-import HeaderComponent from "../Header/HeaderComponent.js";
+import { Grid } from '@material-ui/core';
+import React from 'react';
 
-import { useStyle } from "./Main.style.js";
+import { withIsWeb } from '../../Hoc/withIsWeb.js';
+import HeaderComponent from '../Header/HeaderComponent.js';
+import InfiniteListComponent from '../InfiniteList/InfiniteListComponent.js';
+import { useStyle } from './Main.style.js';
 
 function MainComponent(props) {
   const classes = useStyle();
@@ -17,23 +15,8 @@ function MainComponent(props) {
         <HeaderComponent />
       </Grid>
       <Grid item className={classes.main}>
-        {Array(10)
-          .fill(0)
-          .map((item) => (
-            <AdCardComponent />
-          ))}
+        <InfiniteListComponent />
       </Grid>
-      {!isWeb && (
-        <Grid item className={classes.footer}>
-          <CustomButtonComponent
-            textColor="primaryColor"
-            variant="contained"
-            color="primary"
-          >
-            {fa.main.sendAds}
-          </CustomButtonComponent>
-        </Grid>
-      )}
     </Grid>
   );
 }

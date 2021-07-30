@@ -32,8 +32,7 @@ function Routes() {
           <LoginComponent />
         </Route>
         <Route path="/">
-        <MainComponent />
-          {/* {userExist?.accessToken ? <MainComponent /> : <EntryComponent />} */}
+          {userExist?.accessToken ? <MainComponent /> : <EntryComponent />}
         </Route>
       </Switch>
     </Router>

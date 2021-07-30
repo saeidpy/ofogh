@@ -6,8 +6,8 @@ const useStyle = makeStyles((theme) => ({
     borderRadius: 16,
     width: "100%",
   },
-  primaryColor: { color: theme.palette.text.primary },
-  secondaryColor: { color: theme.palette.text.secondary },
+  primaryColor: { color: theme.palette.common.white },
+  secondaryColor: { color: theme.palette.common.black },
   defaultBackgroundColor: { background: theme.palette.background.default },
   paperBackgroundColor: { background: theme.palette.background.paper },
 }));

@@ -16,20 +16,18 @@ function HeaderComponent(props) {
       justifyContent="space-between"
       alignItems="center"
     >
-      <Grid item>
+      <Grid item xs={!isWeb && 12}>
         <CustomTextFieldComponent placeholder={fa.main.search} />
       </Grid>
-      {isWeb && (
-        <Grid item>
-          <CustomButtonComponent
-            textColor="primaryColor"
-            variant="contained"
-            color="primary"
-          >
-            {fa.main.sendAds}
-          </CustomButtonComponent>
-        </Grid>
-      )}
+      <Grid item className={`${!isWeb && classes.mobileAddAd}`}>
+        <CustomButtonComponent
+          textColor="primaryColor"
+          variant="contained"
+          color="primary"
+        >
+          {fa.main.sendAds}
+        </CustomButtonComponent>
+      </Grid>
     </Grid>
   );
 }

@@ -19,5 +19,12 @@ const fa = {
     sendAds: "ثبت آگهی",
     search: "جستجو (شماره, آدرس, ...)",
   },
+  ad: {
+    edit: "ویرایش",
+    delete: "حذف",
+  },
+  map: {
+    youAreHere: "شما اینجاید",
+  },
 };
 export default fa;

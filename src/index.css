@@ -10,14 +10,14 @@ body {
   overflow-x: hidden;
   direction: rtl;
 }
-
+.leaflet-container {  width: 100%;  height: 100vh; }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
 #root {
-  height: 100%;
+  height: 100vh;
   overflow: hidden;
 }
 

@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-
+import CrudAdComponent from "./Components/CrudAd/CrudAdComponent";
 import EntryComponent from "./Components/Entry/EntryComponent";
+
 import LoginComponent from "./Components/Login/LoginComponent";
+import MainComponent from "./Components/Main/MainComponent";
+import MapComponent from "./Components/Map/MapComponent";
 import SignUpComponent from "./Components/SignUp/SignUpComponent";
-import AdCardComponent from "./Components/AdCard/AdCardComponent";
+import { USER_AUTH } from "./Consistent/consistent";
 import route from "./Consistent/route";
 import { getLocalStorage } from "./Utils/utils";
-import { USER_AUTH } from "./Consistent/consistent";
-import HeaderComponent from "./Components/Header/HeaderComponent";
-import MainComponent from "./Components/Main/MainComponent";
 
 function Routes() {
   const [userExist, setUserExist] = useState(getLocalStorage(USER_AUTH));
@@ -32,7 +32,8 @@ function Routes() {
           <LoginComponent />
         </Route>
         <Route path="/">
-          {userExist?.accessToken ? <MainComponent /> : <EntryComponent />}
+          <CrudAdComponent />
+          {/* {userExist?.accessToken ? <MainComponent /> : <EntryComponent />} */}
         </Route>
       </Switch>
     </Router>

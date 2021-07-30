@@ -8,7 +8,7 @@ const withIsWeb = (WrappedComponent) => {
             this.state = {};
         }
         render() {
-            const isWeb = isWidthUp('sm', this.props.width);
+            const isWeb = isWidthUp('md', this.props.width);
             return <WrappedComponent isWeb={isWeb} {...this.props} />;
         }
     }

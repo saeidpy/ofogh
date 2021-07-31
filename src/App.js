@@ -1,12 +1,15 @@
-import { BrowserRouter as Router } from "react-router-dom";
+import { MuiThemeProvider } from "@material-ui/core";
 import { jssPreset, StylesProvider } from "@material-ui/styles";
 import { create } from "jss";
-import { MuiThemeProvider } from "@material-ui/core";
-import { theme } from "./Theme/theme";
-import { SnackbarProvider } from "notistack";
 import rtl from "jss-rtl";
+import { SnackbarProvider } from "notistack";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { BrowserRouter as Router } from "react-router-dom";
+
+import DialogProvider from "./Components/DialogProvider/DialogProvider";
 import Routes from "./Routes";
+import { theme } from "./Theme/theme";
+
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 const queryClient = new QueryClient();
 function App() {
@@ -22,9 +25,11 @@ function App() {
             }}
             maxSnack={2}
           >
-            <Router>
-              <Routes />
-            </Router>
+            <DialogProvider>
+              <Router>
+                <Routes />
+              </Router>
+            </DialogProvider>
           </SnackbarProvider>
         </MuiThemeProvider>
       </StylesProvider>

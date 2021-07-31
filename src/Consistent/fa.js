@@ -14,6 +14,8 @@ const fa = {
     passwordLimit: "رمز عبور باید بیشتر از ۶ رقم باشد",
     password: "رمز عبور اجباری است",
     confirmPassword: "رمز عبور یکسان نیست",
+    phoneNumber: "شماره صحیح نمی‌باشد",
+    phoneNumberRequire: "شماره اجباری می‌باشد",
   },
   main: {
     sendAds: "ثبت آگهی",
@@ -22,9 +24,23 @@ const fa = {
   ad: {
     edit: "ویرایش",
     delete: "حذف",
+    cancel: "انصراف",
+    accept: "تایید",
+    address: "آدرس",
+    phoneNumber: "شماره تلفن",
   },
   map: {
     youAreHere: "شما اینجاید",
   },
+  dialog: {
+    yes: "بله",
+    no: "خیر",
+    areYouSure: "آیا مطمئنید؟",
+  },
+  successRequest:{
+    create:"آگهی با موفقیت ایجاد شد",
+    update:"آگهی با موفقیت تغییر کرد",
+    delete:"آگهی با موفقیت پاک شد",
+  }
 };
 export default fa;

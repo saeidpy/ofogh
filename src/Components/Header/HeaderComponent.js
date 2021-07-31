@@ -5,10 +5,31 @@ import CustomButtonComponent from "../CustomButton/CustomButtonComponent.js";
 import fa from "../../Consistent/fa.js";
 import CustomTextFieldComponent from "../CustomTextField/CustomTextFieldComponent.js";
 import { withIsWeb } from "../../Hoc/withIsWeb.js";
+import { useDialog } from "../DialogProvider/DialogProvider.js";
+import CrudAdComponent from "../CrudAd/CrudAdComponent.js";
+import { useHistory } from "react-router-dom";
 
 function HeaderComponent(props) {
   const classes = useStyle();
+  const [createDialog, closeDialog] = useDialog();
+  const history = useHistory();
   const { state, setState, isWeb } = props;
+
+  const handleClick = () => {
+    if (isWeb) {
+      createDialog({
+        children: (
+          <CrudAdComponent
+            callbackCancel={closeDialog}
+            mode="create"
+            componentType="dialog"
+          />
+        ),
+      });
+    } else {
+      history.push("/ad/create");
+    }
+  };
   return (
     <Grid
       container
@@ -24,6 +45,7 @@ function HeaderComponent(props) {
           textColor="primaryColor"
           variant="contained"
           color="primary"
+          onClick={handleClick}
         >
           {fa.main.sendAds}
         </CustomButtonComponent>

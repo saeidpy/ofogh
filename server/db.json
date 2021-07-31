@@ -1,58 +1,18 @@
 {
   "ads": [
     {
-      "location": "kerman",
-      "phoneNumber": "0911111111",
-      "description": "new description",
-      "userId": 2,
-      "id": 1
-    },
-    {
-      "location": "kerman2",
-      "phoneNumber": "0911111111",
-      "description": "new description",
-      "userId": 2,
-      "id": 2
-    },
-    {
-      "location": "teheran",
-      "phoneNumber": "0911111111",
-      "description": "new description",
+      "address": "کرمان",
+      "phoneNumber": "09138263167",
       "userId": 1,
-      "id": 3
+      "id": 1
     }
   ],
   "users": [
     {
       "email": "saeedpy@gmail.com",
-      "password": "$2a$10$cixv9GMqe13nCAkPI6bZe.SK/2lAcNpAXb/53r94QfQ6wpSYQ69OW",
+      "password": "$2a$10$KmOYP4KqgciZGPKAYdaUOu4bixrSfmc8dqC/LoNS6LKtXaR0tB7Wm",
       "name": "saeid",
       "id": 1
-    },
-    {
-      "email": "saeedpy2@gmail.com",
-      "password": "$2a$10$tqX5SiMIFyW4AVoBmnbrVOaCcvs8N4eO9tZEkK9NAonpEdltMoSwe",
-      "name": "saeid2",
-      "id": 2
-    },
-    {
-      "email": "saeed2@gmail.com",
-      "password": "$2a$10$qBrE6N0mbUiVQ5a9beFP7.28iQdYHJx3Z8sRnqoyG6tTS8zWcyB1S",
-      "name": "saeed2",
-      "confirmPassword": "123456",
-      "id": 3
-    },
-    {
-      "email": "saeed3@gmail.com",
-      "password": "$2a$10$AHK5PxAyU0viRIi.HXogeuTXlwSxumJy0cUfwemnx/XWoWqtPk3g2",
-      "name": "saeed3",
-      "id": 4
-    },
-    {
-      "email": "saeed4@gmail.com",
-      "password": "$2a$10$wRQ4whu00/h1oNAl2YfoAe6iq7OLLLztn5sLAWp7agvPRD84axVk6",
-      "name": "saeed4",
-      "id": 5
     }
   ]
 }

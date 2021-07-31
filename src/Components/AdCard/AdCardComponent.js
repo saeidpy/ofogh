@@ -13,7 +13,7 @@ import { useStyle } from "./AdCard.style.js";
 
 function AdCardComponent(props) {
   const classes = useStyle();
-  const { address, phoneNumber, isWeb, loading } = props;
+  const { address, phoneNumber, isWeb, loading, onClick, id } = props;
   return (
     <Grid
       item
@@ -21,7 +21,7 @@ function AdCardComponent(props) {
         isWeb ? classes.rootWeb : classes.rootMobile
       }`}
     >
-      <Card className={classes.root}>
+      <Card className={classes.root} onClick={() => onClick(id)}>
         <CardActionArea
           className={`${classes.content} ${!isWeb && classes.area}`}
         >

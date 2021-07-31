@@ -1,15 +1,14 @@
-import { useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import CrudAdComponent from "./Components/CrudAd/CrudAdComponent";
-import EntryComponent from "./Components/Entry/EntryComponent";
+import { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import LoginComponent from "./Components/Login/LoginComponent";
-import MainComponent from "./Components/Main/MainComponent";
-import MapComponent from "./Components/Map/MapComponent";
-import SignUpComponent from "./Components/SignUp/SignUpComponent";
-import { USER_AUTH } from "./Consistent/consistent";
-import route from "./Consistent/route";
-import { getLocalStorage } from "./Utils/utils";
+import CrudAdComponent from './Components/CrudAd/CrudAdComponent';
+import EntryComponent from './Components/Entry/EntryComponent';
+import LoginComponent from './Components/Login/LoginComponent';
+import MainComponent from './Components/Main/MainComponent';
+import SignUpComponent from './Components/SignUp/SignUpComponent';
+import { USER_AUTH } from './Consistent/consistent';
+import route from './Consistent/route';
+import { getLocalStorage } from './Utils/utils';
 
 function Routes() {
   const [userExist, setUserExist] = useState(getLocalStorage(USER_AUTH));
@@ -31,9 +30,19 @@ function Routes() {
         <Route path={route.signIn}>
           <LoginComponent />
         </Route>
+        <Route path="/ad/create">
+          <CrudAdComponent mode="create" />
+        </Route>
+        <Route path="/ad/:id">
+          <CrudAdComponent mode="read" />
+        </Route>
+
         <Route path="/">
-          <CrudAdComponent />
-          {/* {userExist?.accessToken ? <MainComponent /> : <EntryComponent />} */}
+          {userExist?.accessToken ? (
+            <MainComponent />
+          ) : (
+            <EntryComponent />
+          )}
         </Route>
       </Switch>
     </Router>

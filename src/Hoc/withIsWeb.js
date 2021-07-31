@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
-import { isWidthUp, withWidth } from '@material-ui/core';
+import React, { Component } from "react";
+import { isWidthUp, withWidth } from "@material-ui/core";
 
-const withIsWeb = (WrappedComponent) => {
-    class IsWeb extends Component {
-        constructor(props) {
-            super(props);
-            this.state = {};
-        }
-        render() {
-            const isWeb = isWidthUp('md', this.props.width);
-            return <WrappedComponent isWeb={isWeb} {...this.props} />;
-        }
+const withIsWeb = (WrappedComponent, size = "md") => {
+  class IsWeb extends Component {
+    constructor(props) {
+      super(props);
+      this.state = {};
     }
+    render() {
+      const isWeb = isWidthUp(size, this.props.width);
+      return <WrappedComponent isWeb={isWeb} {...this.props} />;
+    }
+  }
 
-    return withWidth()(IsWeb);
+  return withWidth()(IsWeb);
 };
 export { withIsWeb };

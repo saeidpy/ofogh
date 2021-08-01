@@ -26,14 +26,12 @@ const VenueLocationIcon = L.icon({
   className: "leaflet-venue-icon",
 });
 
-function LocationMarker() {
-  const [position, setPosition] = useState(null);
+function LocationMarker({ position, setPosition }) {
   useMapEvents({
     click(e) {
       setPosition(e.latlng);
     },
   });
-
   return position === null ? null : (
     <Marker position={position} icon={VenueLocationIcon}>
       <Popup>{fa.map.youAreHere}</Popup>
@@ -43,15 +41,18 @@ function LocationMarker() {
 
 export default function MapComponent(props) {
   const classes = useStyle();
-  const { state, setState } = props;
+  const {
+    center,
+    position ,
+    setPosition,
+  } = props;
   return (
-    <MapContainer center={{ lat: 35.6892, lng: 51.389 }} zoom={12}>
+    <MapContainer center={center} zoom={12}>
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       />
-      <LocationMarker />
-      <Marker position={data.venues[0].geometry} icon={VenueLocationIcon} />
+      <LocationMarker position={position} setPosition={setPosition} />
     </MapContainer>
   );
 }

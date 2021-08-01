@@ -34,7 +34,7 @@ function Routes() {
           <CrudAdComponent mode="create" />
         </Route>
         <Route path="/ad/:id">
-          <CrudAdComponent mode="read" />
+          <CrudAdComponent mode="update" />
         </Route>
 
         <Route path="/">

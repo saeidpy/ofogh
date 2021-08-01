@@ -18,9 +18,8 @@ export const useCustomCrud = (type, callback) => {
     case "update":
       api = updateAdApi;
       message = fa.successRequest.update;
-
       break;
-    case "read":
+    case "delete":
       api = deleteAdApi;
       message = fa.successRequest.delete;
       break;

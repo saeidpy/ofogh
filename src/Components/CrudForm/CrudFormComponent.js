@@ -22,12 +22,11 @@ const schema = Yup.object().shape({
 
 export default function CrudFormComponent(props) {
   const classes = useStyle();
-  const { mode, componentType, data, id, callbackCancel, isWeb } = props;
+  const { mode, componentType, data, id, callbackCancel, position } = props;
   const [internalMode, setInternalMode] = useState(mode);
   const history = useHistory();
-  const editMode = internalMode === "update";
-  const showMode = internalMode === "read";
-  const createMode = internalMode === "create";
+  const editMode = mode === "update";
+  const createMode = mode === "create";
   const [createDialog, closeDialog] = useDialog();
   const {
     control,
@@ -38,15 +37,16 @@ export default function CrudFormComponent(props) {
   });
 
   const callbackSuccess = () => {
-    if (componentType === "dialog") {
-      closeDialog();
-    } else {
-      if (internalMode === "create" || internalMode === "read") {
-        closeDialog();
+    if (createMode) {
+      if (componentType === "dialog") {
+        callbackCancel();
+      } else {
         history.push("/");
-      } else if (internalMode === "update") {
-        setInternalMode("read");
       }
+    }
+    if (internalMode === "delete") {
+      closeDialog();
+      history.push("/");
     }
   };
 
@@ -54,50 +54,33 @@ export default function CrudFormComponent(props) {
 
   const onSubmit = (values) => {
     if (editMode) {
-      mutate({ body: values, id });
+      mutate({ body: { ...values, position }, id });
     } else {
-      mutate({ body: values });
+      mutate({ body: { ...values, position } });
     }
   };
 
-  const handleOnClick = (e, type) => {
-    if (type === "right") {
-      if (showMode) {
-        e.preventDefault();
-        setInternalMode("update");
-      }
+  const handleOnClick = () => {
+    if (editMode) {
+      setInternalMode("delete");
+      createDialog({
+        children: (
+          <DeleteDialogComponent
+            handleAccept={() => {
+              mutate({ id });
+            }}
+            handleClose={() => {
+              setInternalMode(mode);
+              closeDialog();
+            }}
+          />
+        ),
+      });
     } else {
-      switch (internalMode) {
-        case "update": {
-          setInternalMode("read");
-          break;
-        }
-        case "read": {
-          if (componentType === "dialog") {
-            callbackCancel();
-          } else {
-            createDialog({
-              children: (
-                <DeleteDialogComponent
-                  handleAccept={() => {
-                    setInternalMode("delete");
-                    mutate({ id });
-                  }}
-                  handleClose={closeDialog}
-                />
-              ),
-            });
-          }
-          break;
-        }
-        default: {
-          if (!isWeb) {
-            history.push("/");
-          } else {
-            callbackCancel();
-          }
-          break;
-        }
+      if (componentType === "dialog") {
+        callbackCancel();
+      } else {
+        history.push("/");
       }
     }
   };
@@ -125,12 +108,7 @@ export default function CrudFormComponent(props) {
           <Typography component="label">{fa.ad.address}:</Typography>
           <Controller
             render={({ field }) => (
-              <CustomTextFieldComponent
-                multiline
-                rows={4}
-                disabled={showMode}
-                {...field}
-              />
+              <CustomTextFieldComponent multiline rows={4} {...field} />
             )}
             name="address"
             control={control}
@@ -143,7 +121,6 @@ export default function CrudFormComponent(props) {
             render={({ field }) => (
               <CustomTextFieldComponent
                 type="number"
-                disabled={showMode}
                 error={errors.phoneNumber?.message}
                 helperText={errors.phoneNumber?.message}
                 defaultValue={data?.phoneNumber}
@@ -170,10 +147,9 @@ export default function CrudFormComponent(props) {
             color="primary"
             customClass={classes.actionButton}
             type={"submit"}
-            onClick={(e) => handleOnClick(e, "right")}
             loading={isLoading}
           >
-            {createMode || editMode ? fa.ad.accept : fa.ad.edit}
+            {createMode ? fa.ad.accept : fa.ad.edit}
           </CustomButtonComponent>
         </Grid>
         <Grid item>
@@ -181,12 +157,12 @@ export default function CrudFormComponent(props) {
             customClass={classes.actionButton}
             variant="contained"
             backgroundColor={"defaultBackgroundColor"}
-            onClick={(e) => handleOnClick(e, "left")}
+            onClick={handleOnClick}
           >
-            {createMode || editMode ? fa.ad.cancel : fa.ad.delete}
+            {createMode ? fa.ad.cancel : fa.ad.delete}
           </CustomButtonComponent>
         </Grid>
-        {showMode && (
+        {editMode && (
           <Grid item>
             <CustomButtonComponent
               customClass={classes.actionButton}

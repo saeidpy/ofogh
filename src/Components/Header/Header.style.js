@@ -19,6 +19,13 @@ const useStyle = makeStyles((theme) => ({
       padding: "0px 4px",
     },
   },
+  actionBox: {
+    display: "flex !important",
+    "& .MuiButtonBase-root": {
+      margin: "auto 10px",
+      minInlineSize: "max-content",
+    },
+  },
 }));
 
 export { useStyle };

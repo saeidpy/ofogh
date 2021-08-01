@@ -20,6 +20,7 @@ const fa = {
   main: {
     sendAds: "ثبت آگهی",
     search: "جستجو (شماره, آدرس, ...)",
+    logOut: "خروج",
   },
   ad: {
     edit: "ویرایش",

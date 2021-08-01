@@ -4,6 +4,7 @@ import { useQueryClient } from "react-query";
 import { useHistory } from "react-router-dom";
 
 import { searchAdApi } from "../../Api/Ad.js";
+import { USER_AUTH } from "../../Consistent/consistent.js";
 import fa from "../../Consistent/fa.js";
 import { withIsWeb } from "../../Hoc/withIsWeb.js";
 import { useCustomMutation } from "../../Hooks/useCustomMutation.js";
@@ -47,6 +48,11 @@ function HeaderComponent(props) {
     }
   }, 700);
 
+  const handleClickOut = () => {
+    localStorage.removeItem(USER_AUTH);
+    history.push("/sign-in");
+  };
+
   return (
     <Grid
       container
@@ -65,7 +71,10 @@ function HeaderComponent(props) {
           </div>
         )}
       </Grid>
-      <Grid item className={`${!isWeb && classes.mobileAddAd}`}>
+      <Grid
+        item
+        className={`${classes.actionBox} ${!isWeb && classes.mobileAddAd}`}
+      >
         <CustomButtonComponent
           textColor="primaryColor"
           variant="contained"
@@ -73,6 +82,13 @@ function HeaderComponent(props) {
           onClick={handleClick}
         >
           {fa.main.sendAds}
+        </CustomButtonComponent>
+        <CustomButtonComponent
+          variant="contained"
+          backgroundColor={"defaultBackgroundColor"}
+          onClick={handleClickOut}
+        >
+          {fa.main.logOut}
         </CustomButtonComponent>
       </Grid>
     </Grid>

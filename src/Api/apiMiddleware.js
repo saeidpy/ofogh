@@ -9,21 +9,25 @@ const apiMiddleware = async ({ method, url, body: data, withAuth = false }) => {
       Authorization: `Bearer ${getLocalStorage(USER_AUTH)?.accessToken}`,
     };
   }
-  const response = await axios({
-    method,
-    url,
-    data,
-  })
-    .then((result) => {
-      return result;
-    })
-    .catch((error) => {
+
+  axios.interceptors.response.use(
+    function (response) {
+      return response;
+    },
+    function (error) {
       if (error.response.status === 401) {
         localStorage.removeItem(USER_AUTH);
         window.location.href = "/";
       }
-      return error;
-    });
+      return Promise.reject(error);
+    }
+  );
+
+  const response = await axios({
+    method,
+    url,
+    data,
+  });
 
   return response;
 };

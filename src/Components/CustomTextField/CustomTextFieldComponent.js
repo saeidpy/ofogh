@@ -1,7 +1,7 @@
-import { TextField } from "@material-ui/core";
-import React from "react";
+import { TextField } from '@material-ui/core';
+import React from 'react';
 
-import { useStyle } from "./CustomTextField.style.js";
+import { useStyle } from './CustomTextField.style.js';
 
 const CustomTextFieldComponent = React.forwardRef((props, ref) => {
   const { error } = props;

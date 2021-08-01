@@ -19,6 +19,77 @@
       },
       "userId": 1,
       "id": 9
+    },
+    {
+      "id": 10
+    },
+    {
+      "address": "تهران , بلوار الغدیر , خیابان لادن",
+      "phoneNumber": "09125213212",
+      "position": null,
+      "userId": 2,
+      "id": 12
+    },
+    {
+      "address": "تهران , منطقه ۱۷ , میدان ابوذر , کوچه ناصر مالکی",
+      "phoneNumber": "09215421232",
+      "position": {
+        "lat": 35.658447930059644,
+        "lng": 51.36290043275855
+      },
+      "userId": 2,
+      "id": 13
+    },
+    {
+      "address": "کرمان , میدان آزادی , خیابان شریعتی , کوچه ۱۲\n",
+      "phoneNumber": "09213213212",
+      "position": {
+        "lat": 30.287508292666466,
+        "lng": 57.052389142068236
+      },
+      "userId": 2,
+      "id": 14
+    },
+    {
+      "address": "تهران , منطقه ۲  , بلوار فرحزادی , بوستان رزافشان",
+      "phoneNumber": "09213216595",
+      "position": {
+        "lat": 35.761658140136795,
+        "lng": 51.36158227687739
+      },
+      "userId": 2,
+      "id": 15
+    },
+    {
+      "address": "تبریز , خیابان پاستور جدید - چمران , کوی گلزار",
+      "phoneNumber": "09215236521",
+      "position": null,
+      "userId": 2,
+      "id": 16
+    },
+    {
+      "address": "کلاردشت , بلوار پاسداران , خیابان شهید عباسپور",
+      "phoneNumber": "09125321265",
+      "position": null,
+      "userId": 2,
+      "id": 17
+    },
+    {
+      "address": "تبریز , بلوار انقلاب , خیابان شهید ناصری",
+      "phoneNumber": "09123216598",
+      "position": {
+        "lat": 38.02783817428364,
+        "lng": 47.33866746728126
+      },
+      "userId": 2,
+      "id": 18
+    },
+    {
+      "address": "مشهد , میدان شهدا , خیابان توحید , کوچه ۶",
+      "phoneNumber": "09154532162",
+      "position": null,
+      "userId": 2,
+      "id": 19
     }
   ],
   "users": [
@@ -27,6 +98,12 @@
       "password": "$2a$10$KmOYP4KqgciZGPKAYdaUOu4bixrSfmc8dqC/LoNS6LKtXaR0tB7Wm",
       "name": "saeid",
       "id": 1
+    },
+    {
+      "email": "saeed2@gmail.com",
+      "password": "$2a$10$TTIxFbnKczDIJCJOG/Bz5.qktTO2VaG4f3pMA2fLbV4Xic564VHBK",
+      "name": "saeid2",
+      "id": 2
     }
   ]
 }

@@ -28,6 +28,7 @@ const fa = {
     accept: "تایید",
     address: "آدرس",
     phoneNumber: "شماره تلفن",
+    notExist: "آتیمی وجود ندارد",
   },
   map: {
     youAreHere: "شما اینجاید",
@@ -37,10 +38,10 @@ const fa = {
     no: "خیر",
     areYouSure: "آیا مطمئنید؟",
   },
-  successRequest:{
-    create:"آگهی با موفقیت ایجاد شد",
-    update:"آگهی با موفقیت تغییر کرد",
-    delete:"آگهی با موفقیت پاک شد",
-  }
+  successRequest: {
+    create: "آگهی با موفقیت ایجاد شد",
+    update: "آگهی با موفقیت تغییر کرد",
+    delete: "آگهی با موفقیت پاک شد",
+  },
 };
 export default fa;

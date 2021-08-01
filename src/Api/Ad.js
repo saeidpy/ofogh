@@ -49,4 +49,21 @@ const deleteAdApi = async ({ id }) => {
   return data;
 };
 
-export { createAdApi, readAdApi, updateAdApi, deleteAdApi, readAllAdApi };
+const searchAdApi = async ({ value }) => {
+  const checkName = !isNaN(+value) ? "phoneNumber" : "address";
+  const { data } = await apiMiddleware({
+    method: "GET",
+    url: `/ads/?${checkName}_like=${value}`,
+    withAuth: true,
+  });
+  return data;
+};
+
+export {
+  createAdApi,
+  readAdApi,
+  updateAdApi,
+  deleteAdApi,
+  readAllAdApi,
+  searchAdApi,
+};

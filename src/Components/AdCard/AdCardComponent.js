@@ -29,32 +29,32 @@ function AdCardComponent(props) {
             <CardMedia
               className={`${isWeb ? classes.mediaWeb : classes.mediaMobile}`}
               component="img"
-              image={`/Assets/img/${isWeb ? "map" : "mapMobile"}.png`}
+              image={`/Assets/img/map.svg`}
               title="Contemplative Reptile"
             />
           ) : (
             <Skeleton
               className={`${isWeb ? classes.mediaWeb : classes.mediaMobile}`}
               variant="rect"
-              height={isWeb ? 150 : 120}
+              height={isWeb ? 190 : 120}
               width={isWeb ? 190 : 120}
             />
           )}
           <CardContent className={classes.content}>
-            <Typography className={classes.typography} variant="body2">
-              <img alt="location" src={"/Assets/img/loc.svg"} />
+            <Typography className={classes.typography} variant="caption">
+              <img alt="location" src={"/Assets/img/loc.svg"} width={"12%"} />
               {!loading ? (
                 <>{address}</>
               ) : (
                 <Skeleton variant="text" width={"100%"} height={20} />
               )}
             </Typography>
-            <Typography className={classes.typography} variant="body2">
-              <img alt="phoneNumber" src={"/Assets/img/phone.png"} />
+            <Typography className={classes.typography} variant="caption">
+              <img alt="phoneNumber" src={"/Assets/img/phone.svg"} />
               {!loading ? (
                 <>{phoneNumber}</>
               ) : (
-                <Skeleton variant="text" width={"85%"} height={20} />
+                <Skeleton variant="text" width={"55%"} height={20} />
               )}
             </Typography>
           </CardContent>

@@ -21,9 +21,8 @@ const apiMiddleware = async ({ method, url, body: data, withAuth = false }) => {
       if (error.response.status === 401) {
         localStorage.removeItem(USER_AUTH);
         window.location.href = "/";
-      } else if (error.response.status === 404) {
-        window.location.href = "/";
       }
+      return error;
     });
 
   return response;

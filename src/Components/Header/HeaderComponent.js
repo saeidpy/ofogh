@@ -1,19 +1,24 @@
+import { CircularProgress, debounce, Grid } from "@material-ui/core";
 import React from "react";
-import { useStyle } from "./Header.style.js";
-import { Grid } from "@material-ui/core";
-import CustomButtonComponent from "../CustomButton/CustomButtonComponent.js";
-import fa from "../../Consistent/fa.js";
-import CustomTextFieldComponent from "../CustomTextField/CustomTextFieldComponent.js";
-import { withIsWeb } from "../../Hoc/withIsWeb.js";
-import { useDialog } from "../DialogProvider/DialogProvider.js";
-import CrudAdComponent from "../CrudAd/CrudAdComponent.js";
+import { useQueryClient } from "react-query";
 import { useHistory } from "react-router-dom";
+
+import { searchAdApi } from "../../Api/Ad.js";
+import fa from "../../Consistent/fa.js";
+import { withIsWeb } from "../../Hoc/withIsWeb.js";
+import { useCustomMutation } from "../../Hooks/useCustomMutation.js";
+import CrudAdComponent from "../CrudAd/CrudAdComponent.js";
+import CustomButtonComponent from "../CustomButton/CustomButtonComponent.js";
+import CustomTextFieldComponent from "../CustomTextField/CustomTextFieldComponent.js";
+import { useDialog } from "../DialogProvider/DialogProvider.js";
+import { useStyle } from "./Header.style.js";
 
 function HeaderComponent(props) {
   const classes = useStyle();
   const [createDialog, closeDialog] = useDialog();
   const history = useHistory();
   const { state, setState, isWeb } = props;
+  const queryClient = useQueryClient();
 
   const handleClick = () => {
     if (isWeb) {
@@ -30,6 +35,18 @@ function HeaderComponent(props) {
       history.push("/ad/create");
     }
   };
+
+  const { isLoading, mutate } = useCustomMutation(searchAdApi, (newAds) => {
+    queryClient.setQueriesData("getAds", newAds);
+  });
+
+  const handleOnChange = debounce((e) => {
+    const value = e.target.value;
+    if (value.length >= 3 || value.length === 0) {
+      mutate({ value: e.target.value });
+    }
+  }, 700);
+
   return (
     <Grid
       container
@@ -37,8 +54,16 @@ function HeaderComponent(props) {
       justifyContent="space-between"
       alignItems="center"
     >
-      <Grid item xs={!isWeb && 12}>
-        <CustomTextFieldComponent placeholder={fa.main.search} />
+      <Grid item className={classes.searchBox} xs={!isWeb && 12}>
+        <CustomTextFieldComponent
+          onChange={handleOnChange}
+          placeholder={fa.main.search}
+        />
+        {isLoading && (
+          <div>
+            <CircularProgress size={25} />
+          </div>
+        )}
       </Grid>
       <Grid item className={`${!isWeb && classes.mobileAddAd}`}>
         <CustomButtonComponent

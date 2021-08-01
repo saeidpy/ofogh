@@ -16,7 +16,7 @@ const useStyle = makeStyles((theme) => ({
     width: "100%",
   },
   mediaWeb: {
-    width: "92%",
+    width: "85%",
     margin: "10px auto",
     opacity: "0.9",
     borderRadius: "35px",

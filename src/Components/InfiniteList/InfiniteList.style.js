@@ -19,6 +19,11 @@ const useStyle = makeStyles((theme) => ({
       gridTemplateColumns: "repeat(8,1fr)",
     },
   },
+  notExist: {
+    position: "absolute",
+    width: "100%",
+    textAlign: "center",
+  },
 }));
 
 export { useStyle };

@@ -11,7 +11,13 @@ import Routes from "./Routes";
 import { theme } from "./Theme/theme";
 
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 function App() {
   return (
     <QueryClientProvider client={queryClient}>

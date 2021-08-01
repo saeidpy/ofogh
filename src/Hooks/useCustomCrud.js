@@ -1,12 +1,11 @@
 import { useSnackbar } from "notistack";
 import { useQueryClient } from "react-query";
 
-import { createAdApi, deleteAdApi, readAdApi, updateAdApi } from "../Api/Ad";
+import { createAdApi, deleteAdApi, updateAdApi } from "../Api/Ad";
 import fa from "../Consistent/fa";
 import { useCustomMutation } from "./useCustomMutation";
-import { useCustomQuery } from "./useCustomQuery";
 
-export const useCustomCrud = (type, callback, id) => {
+export const useCustomCrud = (type, callback) => {
   const { enqueueSnackbar } = useSnackbar();
   const queryClient = useQueryClient();
   let api;
@@ -22,12 +21,8 @@ export const useCustomCrud = (type, callback, id) => {
 
       break;
     case "read":
-      api = readAdApi;
-      break;
-    case "delete":
       api = deleteAdApi;
       message = fa.successRequest.delete;
-
       break;
     default:
       api = createAdApi;
@@ -41,9 +36,6 @@ export const useCustomCrud = (type, callback, id) => {
     }
   };
   const mutate = useCustomMutation(api, customCallback);
-  const query = useCustomQuery("getAd", () => api(id), {
-    enabled: !!id.id,
-  });
 
-  return type === "react" ? query : mutate;
+  return mutate;
 };

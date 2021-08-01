@@ -36,13 +36,13 @@ function AdCardComponent(props) {
             <Skeleton
               className={`${isWeb ? classes.mediaWeb : classes.mediaMobile}`}
               variant="rect"
-              height={isWeb ? 160 : 120}
+              height={isWeb ? 150 : 120}
               width={isWeb ? 190 : 120}
             />
           )}
           <CardContent className={classes.content}>
             <Typography className={classes.typography} variant="body2">
-              <img alt="location" src={"/Assets/img/loc.png"} />
+              <img alt="location" src={"/Assets/img/loc.svg"} />
               {!loading ? (
                 <>{address}</>
               ) : (

@@ -13,12 +13,18 @@ const apiMiddleware = async ({ method, url, body: data, withAuth = false }) => {
     method,
     url,
     data,
-  });
-
-  if (response.status === 401) {
-    localStorage.removeItem(USER_AUTH);
-    window.location.href = "/";
-  }
+  })
+    .then((result) => {
+      return result;
+    })
+    .catch((error) => {
+      if (error.response.status === 401) {
+        localStorage.removeItem(USER_AUTH);
+        window.location.href = "/";
+      } else if (error.response.status === 404) {
+        window.location.href = "/";
+      }
+    });
 
   return response;
 };

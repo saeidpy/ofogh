@@ -1,9 +1,9 @@
 import { useSnackbar } from "notistack";
 import { useQuery } from "react-query";
 
-export function useCustomQuery(keyApi, apiCall, other) {
+export function useCustomQuery(...rest) {
   const { enqueueSnackbar } = useSnackbar();
-  const query = useQuery(keyApi, apiCall, other);
+  const query = useQuery(...rest);
   if (query.error) {
     enqueueSnackbar(query.error, { variant: "error" });
   }

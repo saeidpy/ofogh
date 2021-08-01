@@ -19,7 +19,7 @@ export default function InfiniteListComponent(props) {
     history.push("/ad/" + id);
   };
 
-  const { data } = useCustomQuery("getAds", () => readAllAdApi());
+  const { isFetching, data } = useCustomQuery("getAds", () => readAllAdApi());
 
   useEffect(() => {
     setAdsList(
@@ -31,8 +31,6 @@ export default function InfiniteListComponent(props) {
     );
   }, [data]);
 
-
-  
   return (
     <InfiniteScroll
       dataLength={adsList.length}
@@ -42,7 +40,7 @@ export default function InfiniteListComponent(props) {
       className={classes.root}
     >
       {adsList.map((item, index) => (
-        <AdCardComponent {...item} onClick={openDialog} />
+        <AdCardComponent {...item} onClick={openDialog} loading={isFetching} />
       ))}
     </InfiniteScroll>
   );

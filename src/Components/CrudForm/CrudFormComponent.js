@@ -1,5 +1,6 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Grid, Typography } from "@material-ui/core";
+import { useSnackbar } from "notistack";
 import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
@@ -7,6 +8,7 @@ import * as Yup from "yup";
 
 import fa from "../../Consistent/fa.js";
 import { useCustomCrud } from "../../Hooks/useCustomCrud.js";
+import { isEmptyObject } from "../../Utils/utils.js";
 import CustomButtonComponent from "../CustomButton/CustomButtonComponent.js";
 import CustomTextFieldComponent from "../CustomTextField/CustomTextFieldComponent.js";
 import DeleteDialogComponent from "../DeleteDialog/DeleteDialogComponent.js";
@@ -22,11 +24,13 @@ const schema = Yup.object().shape({
 
 export default function CrudFormComponent(props) {
   const classes = useStyle();
-  const { mode, componentType, data, id, callbackCancel, position } = props;
+  const { mode, componentType, data, id, callbackCancel } = props;
   const [internalMode, setInternalMode] = useState(mode);
+  const { enqueueSnackbar } = useSnackbar();
   const history = useHistory();
   const editMode = mode === "update";
   const createMode = mode === "create";
+  const position = data?.position;
   const [createDialog, closeDialog] = useDialog();
   const {
     control,
@@ -54,9 +58,23 @@ export default function CrudFormComponent(props) {
 
   const onSubmit = (values) => {
     if (editMode) {
-      mutate({ body: { ...values, position }, id });
+      mutate({
+        body: { ...data, ...values, position, updateAt: new Date().valueOf() },
+        id,
+      });
     } else {
-      mutate({ body: { ...values, position } });
+      if (!position || isEmptyObject(position)) {
+        enqueueSnackbar(fa.formValidation.position, { variant: "error" });
+        return;
+      }
+      mutate({
+        body: {
+          ...values,
+          position,
+          createAt: new Date().valueOf(),
+          updateAt: new Date().valueOf(),
+        },
+      });
     }
   };
 

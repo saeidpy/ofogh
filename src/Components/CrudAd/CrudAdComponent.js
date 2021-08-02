@@ -9,7 +9,7 @@ import CrudAdLoadingComponent from "../CrudAdLoading/CrudAdLoadingComponent.js";
 import MapComponent from "../Map/MapComponent.js";
 import { useStyle } from "./CrudAd.style.js";
 import CrudFormComponent from "../CrudForm/CrudFormComponent";
-import { DEFAULT_CENTER } from "../../Consistent/consistent.js";
+import { DEFAULT_CENTER, GET_AD } from "../../Consistent/consistent.js";
 function CrudAdComponent(props) {
   const classes = useStyle();
   const { isWeb, mode, callbackCancel, componentType } = props;
@@ -19,10 +19,11 @@ function CrudAdComponent(props) {
   const id = +history?.location?.pathname.split("/")[2];
 
   const { isFetching, isFetched, data } = useCustomQuery(
-    "getAd",
+    GET_AD,
     () => readAdApi({ id }),
     {
       enabled: !!id && !isFetch,
+      retry: 1,
     }
   );
 
@@ -44,8 +45,8 @@ function CrudAdComponent(props) {
     >
       <Grid item className={`${isWeb ? classes.itemMapWeb : classes.itemMap}`}>
         <MapComponent
-          position={mode === "create" ? position : position ?? data.position}
-          center={mode === "create" ? DEFAULT_CENTER : data.position}
+          position={mode === "create" ? position : position ?? data?.position}
+          center={mode === "create" ? DEFAULT_CENTER : data?.position}
           setPosition={setPosition}
         />
       </Grid>
@@ -56,7 +57,6 @@ function CrudAdComponent(props) {
         id={id}
         callbackCancel={callbackCancel}
         isWeb={isWeb}
-        position={mode === "create" ? position : position ?? data.position}
       />
     </Grid>
   );

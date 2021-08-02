@@ -16,6 +16,7 @@ const fa = {
     confirmPassword: "رمز عبور یکسان نیست",
     phoneNumber: "شماره صحیح نمی‌باشد",
     phoneNumberRequire: "شماره اجباری می‌باشد",
+    position:'مکان انتخاب نشده است'
   },
   main: {
     sendAds: "ثبت آگهی",

@@ -2,6 +2,7 @@ import { useSnackbar } from "notistack";
 import { useQueryClient } from "react-query";
 
 import { createAdApi, deleteAdApi, updateAdApi } from "../Api/Ad";
+import { GET_ADS } from "../Consistent/consistent";
 import fa from "../Consistent/fa";
 import { useCustomMutation } from "./useCustomMutation";
 
@@ -31,7 +32,7 @@ export const useCustomCrud = (type, callback) => {
     callback();
     enqueueSnackbar(message, { variant: "success" });
     if (type === "create" || type === "update") {
-      queryClient.invalidateQueries("getAds");
+      queryClient.invalidateQueries(GET_ADS);
     }
   };
   const mutate = useCustomMutation(api, customCallback);

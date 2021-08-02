@@ -24,7 +24,7 @@ const readAdApi = async ({ id }) => {
 const readAllAdApi = async () => {
   const { data } = await apiMiddleware({
     method: "GET",
-    url: "/ads",
+    url: "/ads?_sort=updateAt&_order=asc",
     withAuth: true,
   });
   return data;

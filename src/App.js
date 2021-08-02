@@ -29,7 +29,7 @@ function App() {
               vertical: "bottom",
               horizontal: "center",
             }}
-            maxSnack={2}
+            maxSnack={1}
           >
             <DialogProvider>
               <Router>

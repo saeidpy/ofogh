@@ -4,7 +4,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { useHistory } from "react-router-dom";
 
 import { readAllAdApi } from "../../Api/Ad.js";
-import { USER_AUTH } from "../../Consistent/consistent.js";
+import { GET_ADS, USER_AUTH } from "../../Consistent/consistent.js";
 import fa from "../../Consistent/fa.js";
 import { useCustomQuery } from "../../Hooks/useCustomQuery.js";
 import { getLocalStorage } from "../../Utils/utils.js";
@@ -21,7 +21,7 @@ export default function InfiniteListComponent(props) {
     history.push("/ad/" + id);
   };
 
-  const { isFetching, data } = useCustomQuery("getAds", readAllAdApi);
+  const { isFetching, data } = useCustomQuery(GET_ADS, readAllAdApi);
 
   useEffect(() => {
     setAdsList(

@@ -27,7 +27,7 @@ const schema = Yup.object().shape({
     .required(fa.formValidation.password),
 });
 
-export default function SignUpComponent(props) {
+export default function SignUpComponent() {
   const classes = useStyle();
   const {
     register,

@@ -4,7 +4,7 @@ import { useQueryClient } from "react-query";
 import { useHistory } from "react-router-dom";
 
 import { searchAdApi } from "../../Api/Ad.js";
-import { USER_AUTH } from "../../Consistent/consistent.js";
+import { GET_ADS, USER_AUTH } from "../../Consistent/consistent.js";
 import fa from "../../Consistent/fa.js";
 import { withIsWeb } from "../../Hoc/withIsWeb.js";
 import { useCustomMutation } from "../../Hooks/useCustomMutation.js";
@@ -38,7 +38,7 @@ function HeaderComponent(props) {
   };
 
   const { isLoading, mutate } = useCustomMutation(searchAdApi, (newAds) => {
-    queryClient.setQueriesData("getAds", newAds);
+    queryClient.setQueriesData(GET_ADS, newAds);
   });
 
   const handleOnChange = debounce((e) => {

@@ -4,7 +4,7 @@ import { useQuery } from "react-query";
 export function useCustomQuery(...rest) {
   const { enqueueSnackbar } = useSnackbar();
   const query = useQuery(...rest);
-  if (query.error) {
+  if (query.isError) {
     enqueueSnackbar(query.error, { variant: "error" });
   }
 

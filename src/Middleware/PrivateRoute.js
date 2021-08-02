@@ -1,23 +1,24 @@
-import { cloneElement } from "react";
-import { Redirect, Route } from "react-router-dom";
-import { USER_AUTH } from "../Consistent/consistent";
-import { getLocalStorage } from "../Utils/utils";
+import { cloneElement, useEffect, useState } from "react";
+import { Route } from "react-router-dom";
 
-export default function PrivateRoute({
-  children: Component,
-  userExist,
-  ...rest
-}) {
+import EntryComponent from "../Components/Entry/EntryComponent";
+import { USER_AUTH } from "../Consistent/consistent";
+import { getLocalStorage, isEmptyObject } from "../Utils/utils";
+
+export default function PrivateRoute({ children: Component, ...rest }) {
+  const [userExist, setUserExist] = useState(getLocalStorage(USER_AUTH));
+  useEffect(() => {
+    const getUser = (data) => {
+      setUserExist(data.value);
+    };
+    document.addEventListener("authInserted", getUser);
+    return () => {
+      document.removeEventListener("authInserted", getUser);
+    };
+  }, []);
   return (
-    <Route
-      {...rest}
-      render={(props) =>
-        getLocalStorage(USER_AUTH) || userExist ? (
-          cloneElement(Component, { ...props })
-        ) : (
-          <Redirect to="/sign-in" />
-        )
-      }
-    />
+    <Route {...rest}>
+      {!isEmptyObject(userExist) ? cloneElement(Component) : <EntryComponent />}
+    </Route>
   );
 }

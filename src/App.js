@@ -7,6 +7,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter as Router } from "react-router-dom";
 
 import DialogProvider from "./Components/DialogProvider/DialogProvider";
+import UserProvider from "./Context/UserContext";
 import Routes from "./Routes";
 import { theme } from "./Theme/theme";
 
@@ -20,26 +21,28 @@ const queryClient = new QueryClient({
 });
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <StylesProvider jss={jss}>
-        <MuiThemeProvider theme={theme}>
-          <SnackbarProvider
-            autoHideDuration={2500}
-            anchorOrigin={{
-              vertical: "bottom",
-              horizontal: "center",
-            }}
-            maxSnack={1}
-          >
-            <DialogProvider>
-              <Router>
-                <Routes />
-              </Router>
-            </DialogProvider>
-          </SnackbarProvider>
-        </MuiThemeProvider>
-      </StylesProvider>
-    </QueryClientProvider>
+    <UserProvider>
+      <QueryClientProvider client={queryClient}>
+        <StylesProvider jss={jss}>
+          <MuiThemeProvider theme={theme}>
+            <SnackbarProvider
+              autoHideDuration={2500}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "center",
+              }}
+              maxSnack={1}
+            >
+              <DialogProvider>
+                <Router>
+                  <Routes />
+                </Router>
+              </DialogProvider>
+            </SnackbarProvider>
+          </MuiThemeProvider>
+        </StylesProvider>
+      </QueryClientProvider>
+    </UserProvider>
   );
 }
 

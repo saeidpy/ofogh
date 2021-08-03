@@ -4,8 +4,13 @@ import { useQueryClient } from "react-query";
 import { useHistory } from "react-router-dom";
 
 import { searchAdApi } from "../../Api/Ad.js";
-import { GET_ADS, USER_AUTH } from "../../Consistent/consistent.js";
+import {
+  GET_ADS,
+  SIGN_OUT_SUCCESS,
+  USER_AUTH,
+} from "../../Consistent/consistent.js";
 import fa from "../../Consistent/fa.js";
+import { useUserDispatch } from "../../Context/UserContext.js";
 import { withIsWeb } from "../../Hoc/withIsWeb.js";
 import { useCustomMutation } from "../../Hooks/useCustomMutation.js";
 import { toEnglishNum } from "../../Utils/utils.js";
@@ -21,6 +26,7 @@ function HeaderComponent(props) {
   const history = useHistory();
   const { state, setState, isWeb } = props;
   const queryClient = useQueryClient();
+  var userDispatch = useUserDispatch();
 
   const handleClick = () => {
     if (isWeb) {
@@ -50,7 +56,7 @@ function HeaderComponent(props) {
   }, 700);
 
   const handleClickOut = () => {
-    localStorage.removeItem(USER_AUTH);
+    userDispatch({ type: SIGN_OUT_SUCCESS });
     history.push("/sign-in");
   };
 

@@ -1,24 +1,15 @@
-import { cloneElement, useEffect, useState } from "react";
+import { cloneElement } from "react";
 import { Route } from "react-router-dom";
 
 import EntryComponent from "../Components/Entry/EntryComponent";
-import { USER_AUTH } from "../Consistent/consistent";
-import { getLocalStorage, isEmptyObject } from "../Utils/utils";
+import { useUserState } from "../Context/UserContext";
 
 export default function PrivateRoute({ children: Component, ...rest }) {
-  const [userExist, setUserExist] = useState(getLocalStorage(USER_AUTH));
-  useEffect(() => {
-    const getUser = (data) => {
-      setUserExist(data.value);
-    };
-    document.addEventListener("authInserted", getUser);
-    return () => {
-      document.removeEventListener("authInserted", getUser);
-    };
-  }, []);
+  var { isAuthenticated } = useUserState();
+
   return (
     <Route {...rest}>
-      {!isEmptyObject(userExist) ? cloneElement(Component) : <EntryComponent />}
+      {isAuthenticated ? cloneElement(Component) : <EntryComponent />}
     </Route>
   );
 }

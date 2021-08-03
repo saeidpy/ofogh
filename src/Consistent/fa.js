@@ -6,6 +6,8 @@ const fa = {
     email: "نام کاربری (email)",
     password: "رمز عبور",
     confirmPassword: "تکرار رمز عبور",
+    toSignup:"عضو نیستید؟ ثبت نام کنید",
+    toLogin:"عضو هستید؟ وارد شوید"
   },
   formValidation: {
     name: "نام اجباری است",

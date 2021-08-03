@@ -24,13 +24,12 @@ const schema = Yup.object().shape({
 
 export default function CrudFormComponent(props) {
   const classes = useStyle();
-  const { mode, componentType, data, id, callbackCancel } = props;
+  const { mode, componentType, data, id, callbackCancel, position } = props;
   const [internalMode, setInternalMode] = useState(mode);
   const { enqueueSnackbar } = useSnackbar();
   const history = useHistory();
   const editMode = mode === "update";
   const createMode = mode === "create";
-  const position = data?.position;
   const [createDialog, closeDialog] = useDialog();
   const {
     control,

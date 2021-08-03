@@ -1,13 +1,14 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Grid } from "@material-ui/core";
+import { Grid, Typography } from "@material-ui/core";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import * as Yup from "yup";
 import { signupApi } from "../../Api/Login.js";
 import { USER_AUTH } from "../../Consistent/consistent.js";
 
 import fa from "../../Consistent/fa.js";
+import route from "../../Consistent/route.js";
 import { useCustomMutation } from "../../Hooks/useCustomMutation.js";
 import { setLocalStorage } from "../../Utils/utils.js";
 import CustomButtonComponent from "../CustomButton/CustomButtonComponent.js";
@@ -114,6 +115,9 @@ export default function SignUpComponent() {
         >
           {fa.entry.signUp}
         </CustomButtonComponent>
+        <Link to={route.signIn}>
+          <Typography color="textSecondary" variant="caption">{fa.entry.toLogin}</Typography>
+        </Link>
       </Grid>
     </Grid>
   );

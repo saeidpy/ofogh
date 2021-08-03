@@ -57,6 +57,7 @@ function CrudAdComponent(props) {
         id={id}
         callbackCancel={callbackCancel}
         isWeb={isWeb}
+        position={mode === "create" ? position : position ?? data.position}
       />
     </Grid>
   );

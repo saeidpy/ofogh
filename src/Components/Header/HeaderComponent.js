@@ -8,6 +8,7 @@ import { GET_ADS, USER_AUTH } from "../../Consistent/consistent.js";
 import fa from "../../Consistent/fa.js";
 import { withIsWeb } from "../../Hoc/withIsWeb.js";
 import { useCustomMutation } from "../../Hooks/useCustomMutation.js";
+import { toEnglishNum } from "../../Utils/utils.js";
 import CrudAdComponent from "../CrudAd/CrudAdComponent.js";
 import CustomButtonComponent from "../CustomButton/CustomButtonComponent.js";
 import CustomTextFieldComponent from "../CustomTextField/CustomTextFieldComponent.js";
@@ -44,7 +45,7 @@ function HeaderComponent(props) {
   const handleOnChange = debounce((e) => {
     const value = e.target.value;
     if (value.length >= 3 || value.length === 0) {
-      mutate({ value: e.target.value });
+      mutate({ value: toEnglishNum(e.target.value) });
     }
   }, 700);
 

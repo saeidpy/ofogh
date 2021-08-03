@@ -1,27 +1,29 @@
-import { Typography } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { useHistory } from "react-router-dom";
+import { Typography } from '@material-ui/core';
+import React, { useEffect, useState } from 'react';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { useHistory } from 'react-router-dom';
 
-import { readAllAdApi } from "../../Api/Ad.js";
-import { GET_ADS, USER_AUTH } from "../../Consistent/consistent.js";
-import fa from "../../Consistent/fa.js";
-import { useCustomQuery } from "../../Hooks/useCustomQuery.js";
-import { getLocalStorage } from "../../Utils/utils.js";
-import AdCardComponent from "../AdCard/AdCardComponent.js";
-import { useStyle } from "./InfiniteList.style.js";
+import { readAllAdApi } from '../../Api/Ad.js';
+import { GET_ADS, USER_AUTH } from '../../Consistent/consistent.js';
+import fa from '../../Consistent/fa.js';
+import { useUserState } from '../../Context/UserContext.js';
+import { useCustomQuery } from '../../Hooks/useCustomQuery.js';
+import { getLocalStorage } from '../../Utils/utils.js';
+import AdCardComponent from '../AdCard/AdCardComponent.js';
+import { useStyle } from './InfiniteList.style.js';
 
 export default function InfiniteListComponent(props) {
   const classes = useStyle();
   const history = useHistory();
   const [adsList, setAdsList] = useState([]);
-  const { state, setState } = props;
-
+  const { isSearch } = useUserState();
   const openDialog = (id) => {
     history.push("/ad/" + id);
   };
 
-  const { isFetching, data } = useCustomQuery(GET_ADS, readAllAdApi);
+  const { isFetching, data } = useCustomQuery(GET_ADS, readAllAdApi, {
+    enabled: !isSearch,
+  });
 
   useEffect(() => {
     setAdsList(
@@ -51,6 +53,7 @@ export default function InfiniteListComponent(props) {
         ))
       ) : (
         <div className={classes.notExist}>
+          <img alt="folder" width="20%" src="/Assets/img/folder.png" />
           <Typography>{fa.ad.notExist}</Typography>
         </div>
       )}

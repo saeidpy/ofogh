@@ -1,6 +1,6 @@
-import { useSnackbar } from "notistack";
-import { useQuery } from "react-query";
-import { useHistory } from "react-router-dom";
+import { useSnackbar } from 'notistack';
+import { useQuery } from 'react-query';
+import { useHistory } from 'react-router-dom';
 
 export function useCustomQuery(keyApi, apiCall, other) {
   const { enqueueSnackbar } = useSnackbar();

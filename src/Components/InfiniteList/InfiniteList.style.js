@@ -23,6 +23,7 @@ const useStyle = makeStyles((theme) => ({
     position: "absolute",
     width: "100%",
     textAlign: "center",
+    marginTop: "10vw",
   },
 }));
 

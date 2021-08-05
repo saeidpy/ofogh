@@ -15,10 +15,6 @@ const apiMiddleware = async ({ method, url, body: data, withAuth = false }) => {
       return response;
     },
     function (error) {
-      if (error.response.status === 401) {
-        localStorage.removeItem(USER_AUTH);
-        window.location.href = "/";
-      }
       return Promise.reject(error);
     }
   );

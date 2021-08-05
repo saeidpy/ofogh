@@ -4,11 +4,10 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { useHistory } from 'react-router-dom';
 
 import { readAllAdApi } from '../../Api/Ad.js';
-import { GET_ADS, USER_AUTH } from '../../Consistent/consistent.js';
+import { GET_ADS } from '../../Consistent/consistent.js';
 import fa from '../../Consistent/fa.js';
 import { useUserState } from '../../Context/UserContext.js';
 import { useCustomQuery } from '../../Hooks/useCustomQuery.js';
-import { getLocalStorage } from '../../Utils/utils.js';
 import AdCardComponent from '../AdCard/AdCardComponent.js';
 import { useStyle } from './InfiniteList.style.js';
 
@@ -26,13 +25,7 @@ export default function InfiniteListComponent(props) {
   });
 
   useEffect(() => {
-    setAdsList(
-      data
-        ? data?.filter(
-            (item) => item.userId === getLocalStorage(USER_AUTH)?.user.id
-          )
-        : []
-    );
+    setAdsList(data ? data : []);
   }, [data]);
 
   return (

@@ -4,7 +4,7 @@ import { useQueryClient } from 'react-query';
 import { useHistory } from 'react-router-dom';
 
 import { searchAdApi } from '../../Api/Ad.js';
-import { GET_ADS, SEARCH_SUCCESS, SIGN_OUT_SUCCESS } from '../../Consistent/consistent.js';
+import { GET_ADS, SIGN_OUT_SUCCESS } from '../../Consistent/consistent.js';
 import fa from '../../Consistent/fa.js';
 import { useUserDispatch } from '../../Context/UserContext.js';
 import { withIsWeb } from '../../Hoc/withIsWeb.js';
@@ -47,7 +47,6 @@ function HeaderComponent(props) {
   const handleOnChange = debounce((e) => {
     const value = e.target.value;
     if (value.length >= 3 || value.length === 0) {
-      userDispatch({ type: SEARCH_SUCCESS, payload: !!value });
       mutate({ value: toEnglishNum(e.target.value) });
     }
   }, 700);

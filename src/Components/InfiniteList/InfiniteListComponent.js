@@ -6,7 +6,6 @@ import { useHistory } from 'react-router-dom';
 import { readAllAdApi } from '../../Api/Ad.js';
 import { GET_ADS } from '../../Consistent/consistent.js';
 import fa from '../../Consistent/fa.js';
-import { useUserState } from '../../Context/UserContext.js';
 import { useCustomQuery } from '../../Hooks/useCustomQuery.js';
 import AdCardComponent from '../AdCard/AdCardComponent.js';
 import { useStyle } from './InfiniteList.style.js';
@@ -15,14 +14,11 @@ export default function InfiniteListComponent(props) {
   const classes = useStyle();
   const history = useHistory();
   const [adsList, setAdsList] = useState([]);
-  const { isSearch } = useUserState();
   const openDialog = (id) => {
     history.push("/ad/" + id);
   };
 
-  const { isFetching, data } = useCustomQuery(GET_ADS, readAllAdApi, {
-    enabled: !isSearch,
-  });
+  const { isFetching, data } = useCustomQuery(GET_ADS, readAllAdApi);
 
   useEffect(() => {
     setAdsList(data ? data : []);

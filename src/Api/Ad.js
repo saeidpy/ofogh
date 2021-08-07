@@ -55,7 +55,9 @@ const searchAdApi = async ({ value }) => {
   const checkName = !isNaN(+value) ? "phoneNumber" : "address";
   const { data } = await apiMiddleware({
     method: "GET",
-    url: `/ads/?${checkName}_like=${value}`,
+    url: `/ads/?${checkName}_like=${value}&userId=${
+      getLocalStorage(USER_AUTH)?.user.id
+    }`,
     withAuth: true,
   });
   return data;

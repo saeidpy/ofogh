@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { LOGIN_SUCCESS, SEARCH_SUCCESS, SIGN_OUT_SUCCESS, USER_AUTH } from '../Consistent/consistent';
+import { LOGIN_SUCCESS, SIGN_OUT_SUCCESS, USER_AUTH } from '../Consistent/consistent';
 import { getLocalStorage, isEmptyObject, setLocalStorage } from '../Utils/utils';
 
 export const UserStateContext = React.createContext();
@@ -14,8 +14,6 @@ function userReducer(state, action) {
     case SIGN_OUT_SUCCESS:
       localStorage.removeItem(USER_AUTH);
       return { ...state, isAuthenticated: false };
-    case SEARCH_SUCCESS:
-      return { ...state, isSearch: action.payload };
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);
     }

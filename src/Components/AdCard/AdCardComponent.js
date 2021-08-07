@@ -35,6 +35,7 @@ function AdCardComponent(props) {
           ) : (
             <Skeleton
               className={`${isWeb ? classes.mediaWeb : classes.mediaMobile}`}
+              animation="wave"
               variant="rect"
               height={isWeb ? 190 : 120}
               width={isWeb ? 190 : 120}
@@ -46,7 +47,12 @@ function AdCardComponent(props) {
               {!loading ? (
                 <>{address}</>
               ) : (
-                <Skeleton variant="text" width={"100%"} height={20} />
+                <Skeleton
+                  animation="wave"
+                  variant="text"
+                  width={"100%"}
+                  height={20}
+                />
               )}
             </Typography>
             <Typography className={classes.typography} variant="caption">
@@ -54,7 +60,12 @@ function AdCardComponent(props) {
               {!loading ? (
                 <>{phoneNumber}</>
               ) : (
-                <Skeleton variant="text" width={"55%"} height={20} />
+                <Skeleton
+                  animation="wave"
+                  variant="text"
+                  width={"55%"}
+                  height={20}
+                />
               )}
             </Typography>
           </CardContent>

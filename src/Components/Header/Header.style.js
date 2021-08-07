@@ -9,8 +9,13 @@ const useStyle = makeStyles((theme) => ({
     bottom: 0,
     left: 0,
     width: "100%",
-    padding: 20,
+    padding: "20px 0px",
     zIndex: 100,
+    "& .MuiButtonBase-root": {
+      margin: "auto 50px",
+      padding: "8px 50px",
+      minInlineSize: "max-content",
+    },
   },
   searchBox: {
     display: "flex",

@@ -1,9 +1,9 @@
-import { Grid, Typography } from '@material-ui/core';
-import { Skeleton } from '@material-ui/lab';
-import React from 'react';
-import fa from '../../Consistent/fa.js';
+import { Grid, Typography } from "@material-ui/core";
+import { Skeleton } from "@material-ui/lab";
+import React from "react";
+import fa from "../../Consistent/fa.js";
 
-import { useStyle } from './CrudAdLoading.style.js';
+import { useStyle } from "./CrudAdLoading.style.js";
 
 export default function CrudAdLoadingComponent(props) {
   const classes = useStyle();
@@ -17,7 +17,13 @@ export default function CrudAdLoadingComponent(props) {
       direction={!isWeb ? "column" : "row"}
     >
       <Grid item className={`${isWeb ? classes.itemMapWeb : classes.itemMap}`}>
-        <Skeleton className={classes.skeleton} variant="rect" height={"100%"} width={"100%"} />
+        <Skeleton
+          className={classes.skeleton}
+          variant="rect"
+          animation="wave"
+          height={"100%"}
+          width={"100%"}
+        />
       </Grid>
       <Grid
         item
@@ -37,12 +43,24 @@ export default function CrudAdLoadingComponent(props) {
           justifyContent="space-evenly"
         >
           <Grid item>
-          <Typography component="label">{fa.ad.address}:</Typography>
-            <Skeleton className={classes.skeleton} variant="rect" height={150} width={"100%"} />
+            <Typography component="label">{fa.ad.address}:</Typography>
+            <Skeleton
+              className={classes.skeleton}
+              variant="rect"
+              animation="wave"
+              height={140}
+              width={"100%"}
+            />
           </Grid>
           <Grid item>
-          <Typography component="label">{fa.ad.phoneNumber}:</Typography>
-            <Skeleton className={classes.skeleton} variant="rect" height={50} width={"100%"} />
+            <Typography component="label">{fa.ad.phoneNumber}:</Typography>
+            <Skeleton
+              className={classes.skeleton}
+              variant="rect"
+              animation="wave"
+              height={50}
+              width={"100%"}
+            />
           </Grid>
         </Grid>
         <Grid
@@ -53,11 +71,31 @@ export default function CrudAdLoadingComponent(props) {
           justify="space-evenly"
         >
           <Grid item>
-            <Skeleton className={classes.skeleton} variant="rect" height={50} width={100} />
+            <Skeleton
+              className={classes.skeleton}
+              variant="rect"
+              animation="wave"
+              height={50}
+              width={100}
+            />
           </Grid>
-
           <Grid item>
-            <Skeleton className={classes.skeleton} variant="rect" height={50} width={100} />
+            <Skeleton
+              className={classes.skeleton}
+              variant="rect"
+              animation="wave"
+              height={50}
+              width={100}
+            />
+          </Grid>
+          <Grid item>
+            <Skeleton
+              className={classes.skeleton}
+              variant="rect"
+              animation="wave"
+              height={50}
+              width={100}
+            />
           </Grid>
         </Grid>
       </Grid>

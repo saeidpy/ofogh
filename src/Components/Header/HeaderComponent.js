@@ -1,25 +1,28 @@
-import { CircularProgress, debounce, Grid } from "@material-ui/core";
-import React from "react";
-import { useQueryClient } from "react-query";
-import { useHistory } from "react-router-dom";
+import { CircularProgress, debounce, Grid } from '@material-ui/core';
+import React from 'react';
+import { useQueryClient } from 'react-query';
+import { useHistory } from 'react-router-dom';
 
-import { searchAdApi } from "../../Api/Ad.js";
-import { GET_ADS, USER_AUTH } from "../../Consistent/consistent.js";
-import fa from "../../Consistent/fa.js";
-import { withIsWeb } from "../../Hoc/withIsWeb.js";
-import { useCustomMutation } from "../../Hooks/useCustomMutation.js";
-import CrudAdComponent from "../CrudAd/CrudAdComponent.js";
-import CustomButtonComponent from "../CustomButton/CustomButtonComponent.js";
-import CustomTextFieldComponent from "../CustomTextField/CustomTextFieldComponent.js";
-import { useDialog } from "../DialogProvider/DialogProvider.js";
-import { useStyle } from "./Header.style.js";
+import { searchAdApi } from '../../Api/Ad.js';
+import { GET_ADS, SEARCH_SUCCESS, SIGN_OUT_SUCCESS } from '../../Consistent/consistent.js';
+import fa from '../../Consistent/fa.js';
+import { useUserDispatch } from '../../Context/UserContext.js';
+import { withIsWeb } from '../../Hoc/withIsWeb.js';
+import { useCustomMutation } from '../../Hooks/useCustomMutation.js';
+import { toEnglishNum } from '../../Utils/utils.js';
+import CrudAdComponent from '../CrudAd/CrudAdComponent.js';
+import CustomButtonComponent from '../CustomButton/CustomButtonComponent.js';
+import CustomTextFieldComponent from '../CustomTextField/CustomTextFieldComponent.js';
+import { useDialog } from '../DialogProvider/DialogProvider.js';
+import { useStyle } from './Header.style.js';
 
 function HeaderComponent(props) {
   const classes = useStyle();
   const [createDialog, closeDialog] = useDialog();
   const history = useHistory();
-  const { state, setState, isWeb } = props;
+  const { isWeb } = props;
   const queryClient = useQueryClient();
+  var userDispatch = useUserDispatch();
 
   const handleClick = () => {
     if (isWeb) {
@@ -44,12 +47,13 @@ function HeaderComponent(props) {
   const handleOnChange = debounce((e) => {
     const value = e.target.value;
     if (value.length >= 3 || value.length === 0) {
-      mutate({ value: e.target.value });
+      userDispatch({ type: SEARCH_SUCCESS, payload: !!value });
+      mutate({ value: toEnglishNum(e.target.value) });
     }
   }, 700);
 
   const handleClickOut = () => {
-    localStorage.removeItem(USER_AUTH);
+    userDispatch({ type: SIGN_OUT_SUCCESS });
     history.push("/sign-in");
   };
 
